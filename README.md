@@ -39,7 +39,7 @@ $ sudo pacman -S jdk-8-openjdk git maven
 ### Running Application
 ```sh
 $ git clone https://gitlab.com/esenbogagnu/urms-web.git
-$ cd editor
+$ cd urms-web
 $ mvn spring-boot:run
 ```
 Application will be available on ```localhost:8080```.
