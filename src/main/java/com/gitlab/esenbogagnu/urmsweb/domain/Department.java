@@ -1,0 +1,32 @@
+package com.gitlab.esenbogagnu.urmsweb.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.util.List;
+
+/**
+ * Created on April, 2018
+ *
+ * @author adilcan
+ */
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Department extends BaseEntity {
+
+	private String departmentName;
+
+	@OneToMany(mappedBy = "department")
+	private List<User> users;
+
+	@ManyToMany
+	private List<Risk> risks;
+}
