@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -25,15 +23,8 @@ public class Risk extends BaseEntity {
 
 	private String subject;
 
-	private RiskImpact impact;
-
-	private RiskLikelihood likelihood;
-
 	@ManyToMany
 	private List<Department> departments;
-
-	@ManyToMany
-	private List<RiskCategory> categories;
 
 	@Lob
 	private String assessment;
@@ -41,7 +32,19 @@ public class Risk extends BaseEntity {
 	@Lob
 	private String notes;
 
+	@Transient
 	private MultipartFile file;
 
+	@Enumerated(EnumType.STRING)
 	private RiskState state = RiskState.REPORTED;
+
+	@Enumerated(EnumType.STRING)
+	private RiskImpact impact;
+
+	@Enumerated(EnumType.STRING)
+	private RiskLikelihood likelihood;
+
+	@Enumerated(EnumType.STRING)
+	private RiskCategory category;
+
 }
