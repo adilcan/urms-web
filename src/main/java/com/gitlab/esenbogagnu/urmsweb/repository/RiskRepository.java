@@ -2,6 +2,7 @@ package com.gitlab.esenbogagnu.urmsweb.repository;
 
 import com.gitlab.esenbogagnu.urmsweb.domain.Risk;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author adilcan
  */
+@Repository
 public interface RiskRepository extends CrudRepository<Risk, Long> {
 
 	List<Risk> findBySubject(String subject);
