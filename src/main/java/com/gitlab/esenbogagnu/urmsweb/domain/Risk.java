@@ -1,9 +1,7 @@
 package com.gitlab.esenbogagnu.urmsweb.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -17,21 +15,25 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Risk extends BaseEntity {
 
 	private String subject;
 
+	@JsonIgnore
 	@ManyToMany
 	private List<Department> departments;
 
 	@Lob
 	private String assessment;
 
+	@JsonIgnore
 	@Lob
 	private String notes;
 
+	@JsonIgnore
 	@Transient
 	private MultipartFile file;
 
