@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<th:block layout:fragment="content">
 
-</body>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-6"><h2 th:text="#{common.departments}">Departments</h2></div>
+        <div class="col-2">
+          <a class="btn btn-primary" th:text="#{department.new}" th:href="@{/departments/new}">
+          </a>
+        </div>
+      </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th th:text="#{department.name}">Department Name</th>
+          <th th:text="#{department.email}">Department E-Mail Address</th>
+          <th th:text="#{common.actions}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department :${departments}">
+          <td th:text="${department.name}"></td>
+          <td th:text="${department.email}"></td>
+          <td><a class="btn btn-success" th:href="@{'/departments/' + ${department.id} + '/update'}" th:text="#{common.update}"></a></td>
+        </tr>
+        </tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+  </div>
+
+</th:block>
 </html>

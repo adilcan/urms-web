@@ -4,8 +4,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="text-center">New Department</h2>
-                    <form id="domain-form" class="domain-form" method="post" th:action="@{/departments/new}" th:object="${department}">
+                    <h2 class="text-center" th:text="#{department.new}">New Department</h2>
+                    <form id="department-form" method="post" th:action="@{/departments/new}" th:object="${department}">
 
                         <div class="form-group m-t-30">
                             <label for="name" th:text="#{department.name}">Name</label>
@@ -13,11 +13,11 @@
                         </div>
 
                         <div class="form-group m-t-30">
-                            <label for="email">E-Mail Address</label>
-                            <input class="form-control" type="text" id="email" th:field="*{email}" required/>
+                            <label for="email" th:text="#{department.email}">E-Mail Address</label>
+                            <input class="form-control" th:placeholder="#{department.email}" type="text" id="email" th:field="*{email}" required/>
                         </div>
 
-                        <button th:text="#{common.create}" class="ui button" type="submit">Create</button>
+                        <button th:text="#{common.create}" class="btn btn-primary" type="submit">Create</button>
                     </form>
                 </div>
             </div>
