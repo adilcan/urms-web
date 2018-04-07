@@ -23,9 +23,9 @@
                 <tbody>
                 <tr th:each="risk :${risks}">
                     <td><a th:href="@{'/risks/' + ${risk.id}}" th:text="${risk.subject}"></a></td>
-                    <td th:text="${risk.category}"></td>
-                    <td th:text="${risk.impact}"></td>
-                    <td th:text="${risk.likelihood}"></td>
+                    <td th:text="#{'category.'+ ${risk.category}}"></td>
+                    <td th:text="#{'impact.'+ ${risk.impact}}"></td>
+                    <td th:text="#{'likelihood.'+ ${risk.likelihood}}"></td>
                 </tr>
                 </tbody>
                 <tfoot></tfoot>

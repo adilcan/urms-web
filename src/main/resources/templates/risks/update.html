@@ -10,7 +10,7 @@
                         <div class="form-group m-t-30">
                             <label for="state" th:text="#{risk.state}">State</label>
                             <select class="form-control" id="state" th:field="*{state}" required>
-                                <option th:each="state : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskState).values()}" th:text="${state}" th:value="${state}"></option>
+                                <option th:each="state : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskState).values()}" th:text="#{'state.'+ ${state}}" th:value="${state}"></option>
                             </select>
                             <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></p>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="form-group m-t-30">
                             <label for="likelihood" th:text="#{risk.likelihood}">Likelihood</label>
                             <select class="form-control" id="likelihood" th:field="*{likelihood}" required>
-                                <option th:each="likelihood : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskLikelihood).values()}" th:text="${likelihood}" th:value="${likelihood}"></option>
+                                <option th:each="likelihood : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskLikelihood).values()}" th:text="#{'likelihood.'+ ${likelihood}}" th:value="${likelihood}"></option>
                             </select>
                             <p th:if="${#fields.hasErrors('likelihood')}" th:errors="*{likelihood}"></p>
                         </div>
@@ -38,7 +38,7 @@
                         <div class="form-group m-t-30">
                             <label for="impact" th:text="#{risk.impact}">Impact</label>
                             <select class="form-control" id="impact" th:field="*{impact}" required>
-                                <option th:each="impact : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskImpact).values()}" th:text="${impact}" th:value="${impact}"></option>
+                                <option th:each="impact : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskImpact).values()}" th:text="#{'impact.'+ ${impact}}" th:value="${impact}"></option>
                             </select>
                             <p th:if="${#fields.hasErrors('impact')}" th:errors="*{impact}"></p>
                         </div>
@@ -46,7 +46,7 @@
                         <div class="form-group m-t-30">
                             <label for="category" th:text="#{risk.category}">Category</label>
                             <select class="form-control" id="category" th:field="*{category}" required>
-                                <option th:each="category : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskCategory).values()}" th:text="${category}" th:value="${category}"></option>
+                                <option th:each="category : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskCategory).values()}" th:text="#{'category.'+ ${category}}" th:value="${category}"></option>
                             </select>
                             <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
                         </div>
