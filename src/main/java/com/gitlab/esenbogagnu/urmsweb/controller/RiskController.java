@@ -42,7 +42,7 @@ public class RiskController {
 		else {
 			model.addAttribute("risks", riskRepository.findByIsResolved(false));
 		}
-		return "risks/list";
+		return "risks/list.html";
 	}
 
 	@GetMapping("/new")
