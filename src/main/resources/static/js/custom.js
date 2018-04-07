@@ -33,9 +33,9 @@ $(function () {
             var height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
             height = height - topOffset;
             if (height < 1) height = 1;
-           // if (height > topOffset) {
-           //     $(".page-wrapper").css("min-height", (height) + "px");
-           // }
+            if (height > topOffset) {
+                $(".page-wrapper").css("min-height", 100 + "%");
+            }
        
     };
     $(window).ready(set);
