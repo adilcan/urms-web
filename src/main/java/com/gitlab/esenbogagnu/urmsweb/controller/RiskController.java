@@ -85,8 +85,9 @@ public class RiskController {
 	}
 
 	@PostMapping("/{id}/update")
-	public String postUpdateRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult) {
+	public String postUpdateRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("departments", departmentRepository.findAll());
 			return "risks/update";
 		}
 		else {
