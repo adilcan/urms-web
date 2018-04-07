@@ -4,14 +4,19 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-4"></div>
+        <div class="col-4">
+          <a th:unless="${param.resolved}" class="btn btn-success" th:text="#{risk.show_resolved}" th:href="@{/risks?resolved=TRUE}">
+          </a>
+          <a th:if="${param.resolved}" class="btn btn-success" th:text="#{risk.show_not_resolved}" th:href="@{/risks}">
+          </a>
+        </div>
         <div class="col-6"><h2 th:text="#{common.risks}">Risk Reports</h2></div>
         <div class="col-2">
           <a class="btn btn-primary" th:text="#{risk.new}" th:href="@{/risks/new}">
           </a>
         </div>
       </div>
-      <table class="table table-bordered table-striped">
+      <table id="risk-table" class="table table-bordered table-striped tablesorter">
         <thead>
         <tr>
           <th th:text="#{risk.subject}">Risk Report Subject</th>
@@ -32,6 +37,14 @@
       </table>
     </div>
   </div>
+
+  <script>
+  $(document).ready(function()
+    {
+        $("#risk-table").tablesorter();
+    }
+  );
+  </script>
 
 </th:block>
 </html>

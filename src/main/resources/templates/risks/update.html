@@ -17,6 +17,14 @@
             </div>
 
             <div class="form-group m-t-30">
+              <div class="form-control">
+                <input type="checkbox" id="resolved" th:checked="*{resolved}" th:name="resolved" required/>
+                <label for="resolved" th:text="#{risk.resolved}">Is Resolved?</label>
+                <p th:if="${#fields.hasErrors('resolved')}" th:errors="*{resolved}"></p>
+              </div>
+            </div>
+
+            <div class="form-group m-t-30">
               <label for="subject" th:text="#{risk.subject}">Risk Subject</label>
               <input class="form-control" th:value="*{subject}" type="text" id="subject" th:field="*{subject}" required/>
               <p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>

@@ -35,8 +35,13 @@ public class RiskController {
 	private EmailService emailService;
 
 	@GetMapping("")
-	public String listRisks(Model model) {
-		model.addAttribute("risks", riskRepository.findAll());
+	public String listRisks(Model model, @RequestParam(required = false, name = "resolved") boolean isResolved) {
+		if (isResolved) {
+			model.addAttribute("risks", riskRepository.findByIsResolved(true));
+		}
+		else {
+			model.addAttribute("risks", riskRepository.findByIsResolved(false));
+		}
 		return "risks/list";
 	}
 

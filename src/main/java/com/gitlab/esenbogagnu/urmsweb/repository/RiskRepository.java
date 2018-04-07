@@ -15,4 +15,6 @@ import java.util.List;
 public interface RiskRepository extends CrudRepository<Risk, Long> {
 
 	List<Risk> findBySubject(String subject);
+
+	List<Risk> findByIsResolved(boolean isResolved);
 }
