@@ -86,7 +86,7 @@ body {
 html {
   position: relative;
   min-height: 100%;
-  background: #ffffff; }
+  background: #eef5f9; }
 
 a:hover, a:focus {
   text-decoration: none; }
@@ -6476,8 +6476,8 @@ File: scss
   .campaign {
     height: 365px !important; } }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
