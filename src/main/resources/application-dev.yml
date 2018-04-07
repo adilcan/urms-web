@@ -1,0 +1,16 @@
+server:
+    port: 8080
+email:
+    username: ${MAIL_USER:urmsuite@yandex.com}
+    password: ${MAIL_PASSWORD}
+    from: ${MAIL_FROM:urmsuite@yandex.com}
+    smtp:
+        host: ${MAIL_HOST:smtp.yandex.com}
+        port: ${MAIL_PORT:587}
+        auth: true
+        starttls:
+             enable: true
+spring:
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
