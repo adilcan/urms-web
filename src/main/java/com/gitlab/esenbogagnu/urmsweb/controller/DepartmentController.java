@@ -28,7 +28,7 @@ public class DepartmentController {
 	@GetMapping("")
 	public String listDepartments(Model model) {
 		model.addAttribute("departments", departmentRepository.findAll());
-		return "departments/list";
+		return "departments/list.html";
 	}
 
 	@GetMapping("/new")

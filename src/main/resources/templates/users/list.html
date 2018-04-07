@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block layout:fragment="content">
+
+  <div class="card">
+    <div class="card-body">
+      <h2 th:text="#{common.users}">Users</h2>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th th:text="#{common.username}">Username</th>
+          <th th:text="#{common.name}">Name</th>
+          <th th:text="#{common.email}">E-Mail Address</th>
+          <th th:text="#{common.department}">Department</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+          <td th:text="${user.username}"></td>
+          <td th:text="${user.name}"></td>
+          <td th:text="${user.email}"></td>
+          <td th:text="${user.department.name}"></td>
+        </tr>
+        </tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+  </div>
+
+</th:block>
+</html>

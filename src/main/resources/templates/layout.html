@@ -65,12 +65,16 @@
             <a th:href="@{/departments}" aria-expanded="false"><span th:text="#{common.departments}"
                                                                      class="hide-menu">Departments</span></a>
           </li>
+          <li>
+            <a th:href="@{/users}" aria-expanded="false"><span th:text="#{common.users}"
+                                                                     class="hide-menu">Users</span></a>
+          </li>
         </ul>
       </nav>
     </div>
 
     <div class="sidebar-footer">
-      <form sec:authorize="isAuthenticated()" th:action="@{/users/logout}" method="post">
+      <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
         <a href="javascript:void(0)" onclick="this.parentNode.submit()" class="link" data-toggle="tooltip" title="Logout"><i
             class="mdi mdi-power"></i></a>
       </form>

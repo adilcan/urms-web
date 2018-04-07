@@ -3,6 +3,7 @@ package com.gitlab.esenbogagnu.urmsweb;
 import com.gitlab.esenbogagnu.urmsweb.domain.*;
 import com.gitlab.esenbogagnu.urmsweb.repository.DepartmentRepository;
 import com.gitlab.esenbogagnu.urmsweb.repository.RiskRepository;
+import com.gitlab.esenbogagnu.urmsweb.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +26,9 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 
 	@Autowired
 	private RiskRepository riskRepository;
+
+	@Autowired
+	private UserService userService;
 
 	@Transactional
 	@Override
@@ -129,5 +133,36 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.build();
 
 		riskRepository.save(risk4);
+
+		User user0 = User.builder()
+				.username("admin")
+				.password("admin123")
+				.email("admin@admin.com")
+				.name("Joe Strummer")
+				.role(Role.ADMIN)
+				.isEnabled(true)
+				.isCredentialsExpired(false)
+				.isExpired(false)
+				.isLocked(false)
+				.department(department0)
+				.build();
+
+		userService.save(user0);
+
+		User user1 = User.builder()
+				.username("user")
+				.password("user1234")
+				.email("user@user.com")
+				.name("David Bowie")
+				.role(Role.USER)
+				.isEnabled(true)
+				.isCredentialsExpired(false)
+				.isExpired(false)
+				.isLocked(false)
+				.department(department1)
+				.build();
+
+		userService.save(user1);
+
 	}
 }
