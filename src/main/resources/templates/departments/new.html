@@ -10,11 +10,13 @@
                         <div class="form-group m-t-30">
                             <label for="name" th:text="#{department.name}">Name</label>
                             <input class="form-control" th:placeholder="#{department.name}" type="text" id="name" th:field="*{name}" required/>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                         </div>
 
                         <div class="form-group m-t-30">
                             <label for="email" th:text="#{department.email}">E-Mail Address</label>
-                            <input class="form-control" th:placeholder="#{department.email}" type="text" id="email" th:field="*{email}" required/>
+                            <input class="form-control" th:placeholder="#{department.email}" type="email" id="email" th:field="*{email}" required/>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                         </div>
 
                         <button th:text="#{common.create}" class="btn btn-primary" type="submit">Create</button>

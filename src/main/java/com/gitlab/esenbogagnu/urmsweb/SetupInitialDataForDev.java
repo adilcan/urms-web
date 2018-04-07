@@ -32,30 +32,35 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 
 		Department department0 = Department.builder()
 				.name("Finance")
+				.email("finance@urms.io")
 				.build();
 
 		departmentRepository.save(department0);
 
 		Department department1 = Department.builder()
 				.name("Human Resources")
+				.email("hr@urms.io")
 				.build();
 
 		departmentRepository.save(department1);
 
 		Department department2 = Department.builder()
 				.name("External Affairs")
+				.email("external@urms.io")
 				.build();
 
 		departmentRepository.save(department2);
 
 		Department department3 = Department.builder()
 				.name("Information Technologies")
+				.email("it@urms.io")
 				.build();
 
 		departmentRepository.save(department3);
 
 		Department department4 = Department.builder()
 				.name("Health")
+				.email("health@urms.io")
 				.build();
 
 		departmentRepository.save(department4);

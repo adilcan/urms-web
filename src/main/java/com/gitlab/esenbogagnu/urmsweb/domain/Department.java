@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -20,8 +22,11 @@ import java.util.List;
 @AllArgsConstructor
 public class Department extends BaseEntity {
 
+	@NotEmpty
 	private String name;
 
+	@Email
+	@NotEmpty
 	private String email;
 
 	@OneToMany(mappedBy = "department")
