@@ -51,4 +51,6 @@ public class Risk extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private RiskCategory category;
 
+	private boolean isResolved = false;
+
 }

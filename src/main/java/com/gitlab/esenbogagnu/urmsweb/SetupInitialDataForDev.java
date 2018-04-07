@@ -73,6 +73,7 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.likelihood(RiskLikelihood.LIKELY)
 				.category(RiskCategory.FINANCIAL)
 				.departments(Arrays.asList(department0))
+				.isResolved(false)
 				.build();
 
 		riskRepository.save(risk0);
@@ -85,6 +86,7 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.likelihood(RiskLikelihood.CREDIBLE)
 				.category(RiskCategory.ORGANIZATIONAL)
 				.departments(Arrays.asList(department1))
+				.isResolved(false)
 				.build();
 
 		riskRepository.save(risk1);
@@ -97,6 +99,7 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.likelihood(RiskLikelihood.REMOTE)
 				.category(RiskCategory.TECHNICAL)
 				.departments(Arrays.asList(department3))
+				.isResolved(false)
 				.build();
 
 		riskRepository.save(risk2);
@@ -109,6 +112,7 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.likelihood(RiskLikelihood.CERTAIN)
 				.category(RiskCategory.FINANCIAL)
 				.departments(Arrays.asList(department1))
+				.isResolved(false)
 				.build();
 
 		riskRepository.save(risk3);
@@ -121,6 +125,7 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 				.likelihood(RiskLikelihood.UNLIKELY)
 				.category(RiskCategory.PEOPLE)
 				.departments(Arrays.asList(department4))
+				.isResolved(false)
 				.build();
 
 		riskRepository.save(risk4);
