@@ -65,7 +65,7 @@
 
             <div class="form-group m-t-30">
               <label for="notes" th:text="#{risk.notes}">Notes</label>
-              <textarea class="form-control" th:value="*{notes}" type="text" id="notes" th:field="*{notes}" required></textarea>
+              <textarea class="form-control" th:value="*{notes}" type="text" id="notes" th:field="*{notes}"></textarea>
               <p th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></p>
             </div>
 
