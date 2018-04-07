@@ -25,10 +25,10 @@
         <tbody>
         <tr>
           <td th:text="${risk.assessment}"></td>
-          <td th:text="#{'category.'+ ${category}}"></td>
-          <td th:text="#{'impact.'+ ${impact}}"></td>
-          <td th:text="#{'likelihood.'+ ${likelihood}}"></td>
-          <td th:text="#{'state.'+ ${state}}"></td>
+          <td th:text="#{'category.'+ ${risk.category}}"></td>
+          <td th:text="#{'impact.'+ ${risk.impact}}"></td>
+          <td th:text="#{'likelihood.'+ ${risk.likelihood}}"></td>
+          <td th:text="#{'state.'+ ${risk.state}}"></td>
           <td th:each="department : ${risk.departments}">
             <p th:text="${department.name}"></p>
           </td>
