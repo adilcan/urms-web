@@ -1,76 +1,80 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
 <th:block layout:fragment="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center" th:text="#{risk.update}">Update Risk Report</h2>
-                    <form id="risk-form" method="post" th:action="@{'/risks/' + ${risk.id} + '/update'}" th:object="${risk}">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center" th:text="#{risk.update}">Update Risk Report</h2>
+          <form id="risk-form" method="post" th:action="@{'/risks/' + ${risk.id} + '/update'}" th:object="${risk}">
 
-                        <div class="form-group m-t-30">
-                            <label for="state" th:text="#{risk.state}">State</label>
-                            <select class="form-control" id="state" th:field="*{state}" required>
-                                <option th:each="state : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskState).values()}" th:text="#{'state.'+ ${state}}" th:value="${state}"></option>
-                            </select>
-                            <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="subject" th:text="#{risk.subject}">Risk Subject</label>
-                            <input class="form-control" th:value="*{subject}"  type="text" id="subject" th:field="*{subject}" required/>
-                            <p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="assessment" th:text="#{risk.assessment}">Assessment</label>
-                            <textarea class="form-control" th:value="*{assessment}" type="text" id="assessment" th:field="*{assessment}" required></textarea>
-                            <p th:if="${#fields.hasErrors('assessment')}" th:errors="*{assessment}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="likelihood" th:text="#{risk.likelihood}">Likelihood</label>
-                            <select class="form-control" id="likelihood" th:field="*{likelihood}" required>
-                                <option th:each="likelihood : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskLikelihood).values()}" th:text="#{'likelihood.'+ ${likelihood}}" th:value="${likelihood}"></option>
-                            </select>
-                            <p th:if="${#fields.hasErrors('likelihood')}" th:errors="*{likelihood}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="impact" th:text="#{risk.impact}">Impact</label>
-                            <select class="form-control" id="impact" th:field="*{impact}" required>
-                                <option th:each="impact : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskImpact).values()}" th:text="#{'impact.'+ ${impact}}" th:value="${impact}"></option>
-                            </select>
-                            <p th:if="${#fields.hasErrors('impact')}" th:errors="*{impact}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="category" th:text="#{risk.category}">Category</label>
-                            <select class="form-control" id="category" th:field="*{category}" required>
-                                <option th:each="category : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskCategory).values()}" th:text="#{'category.'+ ${category}}" th:value="${category}"></option>
-                            </select>
-                            <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="departments" th:text="#{common.departments}">Departments</label>
-                            <select class="form-control" id="departments" th:field="*{departments}" multiple required>
-                                <option th:each="department : ${departments}" th:text="${department.name}" th:value="${department.id}"></option>
-                            </select>
-                            <p th:if="${#fields.hasErrors('departments')}" th:errors="*{departments}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="notes" th:text="#{risk.notes}">Notes</label>
-                            <textarea class="form-control" th:value="*{notes}" type="text" id="notes" th:field="*{notes}" required></textarea>
-                            <p th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></p>
-                        </div>
-
-                        <button th:text="#{common.update}" class="btn btn-primary" type="submit">Update</button>
-                    </form>
-                </div>
+            <div class="form-group m-t-30">
+              <label for="state" th:text="#{risk.state}">State</label>
+              <select class="form-control" id="state" th:field="*{state}" required>
+                <option th:each="state : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskState).values()}" th:text="#{'state.'+ ${state}}"
+                        th:value="${state}"></option>
+              </select>
+              <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></p>
             </div>
+
+            <div class="form-group m-t-30">
+              <label for="subject" th:text="#{risk.subject}">Risk Subject</label>
+              <input class="form-control" th:value="*{subject}" type="text" id="subject" th:field="*{subject}" required/>
+              <p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="assessment" th:text="#{risk.assessment}">Assessment</label>
+              <textarea class="form-control" th:value="*{assessment}" type="text" id="assessment" th:field="*{assessment}" required></textarea>
+              <p th:if="${#fields.hasErrors('assessment')}" th:errors="*{assessment}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="likelihood" th:text="#{risk.likelihood}">Likelihood</label>
+              <select class="form-control" id="likelihood" th:field="*{likelihood}" required>
+                <option th:each="likelihood : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskLikelihood).values()}"
+                        th:text="#{'likelihood.'+ ${likelihood}}" th:value="${likelihood}"></option>
+              </select>
+              <p th:if="${#fields.hasErrors('likelihood')}" th:errors="*{likelihood}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="impact" th:text="#{risk.impact}">Impact</label>
+              <select class="form-control" id="impact" th:field="*{impact}" required>
+                <option th:each="impact : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskImpact).values()}" th:text="#{'impact.'+ ${impact}}"
+                        th:value="${impact}"></option>
+              </select>
+              <p th:if="${#fields.hasErrors('impact')}" th:errors="*{impact}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="category" th:text="#{risk.category}">Category</label>
+              <select class="form-control" id="category" th:field="*{category}" required>
+                <option th:each="category : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskCategory).values()}" th:text="#{'category.'+ ${category}}"
+                        th:value="${category}"></option>
+              </select>
+              <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="departments" th:text="#{common.departments}">Departments</label>
+              <select class="form-control" id="departments" th:field="*{departments}" multiple required>
+                <option th:each="department : ${departments}" th:text="${department.name}" th:value="${department.id}"></option>
+              </select>
+              <p th:if="${#fields.hasErrors('departments')}" th:errors="*{departments}"></p>
+            </div>
+
+            <div class="form-group m-t-30">
+              <label for="notes" th:text="#{risk.notes}">Notes</label>
+              <textarea class="form-control" th:value="*{notes}" type="text" id="notes" th:field="*{notes}" required></textarea>
+              <p th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></p>
+            </div>
+
+            <button th:text="#{common.update}" class="btn btn-primary" type="submit">Update</button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 
 </th:block>
 </html>

@@ -1,30 +1,30 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
 <th:block layout:fragment="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center" th:text="#{department.update}">Update Department</h2>
-                    <form id="department-form" method="post" th:action="@{'/departments/' + ${department.id} + '/update'}" th:object="${department}">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center" th:text="#{department.update}">Update Department</h2>
+          <form id="department-form" method="post" th:action="@{'/departments/' + ${department.id} + '/update'}" th:object="${department}">
 
-                        <div class="form-group m-t-30">
-                            <label for="name" th:text="#{department.name}">Name</label>
-                            <input class="form-control" type="text" id="name" th:field="*{name}" required/>
-                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-                        </div>
-
-                        <div class="form-group m-t-30">
-                            <label for="email" th:text="#{department.email}">E-Mail Address</label>
-                            <input class="form-control" type="text" id="email" th:field="*{email}" required/>
-                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                        </div>
-
-                        <button th:text="#{common.update}" class="btn btn-primary" type="submit">Update</button>
-                    </form>
-                </div>
+            <div class="form-group m-t-30">
+              <label for="name" th:text="#{department.name}">Name</label>
+              <input class="form-control" type="text" id="name" th:field="*{name}" required/>
+              <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
             </div>
+
+            <div class="form-group m-t-30">
+              <label for="email" th:text="#{department.email}">E-Mail Address</label>
+              <input class="form-control" type="text" id="email" th:field="*{email}" required/>
+              <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
+
+            <button th:text="#{common.update}" class="btn btn-primary" type="submit">Update</button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 
 </th:block>
 </html>

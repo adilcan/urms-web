@@ -1,42 +1,44 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
 <th:block layout:fragment="content">
 
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-10"><h2 th:text="${risk.subject}">Risk Subject</h2></div>
-                <div class="col-2">
-                    <a class="btn btn-primary" th:text="#{risk.update}" th:href="@{'/risks/' + ${risk.id} + '/update'}">
-                    </a>
-                </div>
-            </div>
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th th:text="#{risk.assessment}">Assessment</th>
-                    <th th:text="#{risk.category}">Category</th>
-                    <th th:text="#{risk.impact}">Impact</th>
-                    <th th:text="#{risk.likelihood}">Likelihood</th>
-                    <th th:text="#{common.departments}">Departments</th>
-                    <th th:text="#{risk.notes}">Notes</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td th:text="${risk.assessment}"></td>
-                    <td th:text="${risk.category}"></td>
-                    <td th:text="${risk.impact}"></td>
-                    <td th:text="${risk.likelihood}"></td>
-                    <td th:each="department : ${risk.departments}">
-                        <p th:text="${department.name}"></p>
-                    </td>
-                    <td th:text="${risk.notes}"></td>
-                </tr>
-                </tbody>
-                <tfoot></tfoot>
-            </table>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10"><h2 th:text="${risk.subject}">Risk Subject</h2></div>
+        <div class="col-2">
+          <a class="btn btn-primary" th:text="#{risk.update}" th:href="@{'/risks/' + ${risk.id} + '/update'}">
+          </a>
         </div>
+      </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th th:text="#{risk.assessment}">Assessment</th>
+          <th th:text="#{risk.category}">Category</th>
+          <th th:text="#{risk.impact}">Impact</th>
+          <th th:text="#{risk.likelihood}">Likelihood</th>
+          <th th:text="#{risk.state}">State</th>
+          <th th:text="#{common.departments}">Departments</th>
+          <th th:text="#{risk.notes}">Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td th:text="${risk.assessment}"></td>
+          <td th:text="#{'category.'+ ${category}}"></td>
+          <td th:text="#{'impact.'+ ${impact}}"></td>
+          <td th:text="#{'likelihood.'+ ${likelihood}}"></td>
+          <td th:text="#{'state.'+ ${state}}"></td>
+          <td th:each="department : ${risk.departments}">
+            <p th:text="${department.name}"></p>
+          </td>
+          <td th:text="${risk.notes}"></td>
+        </tr>
+        </tbody>
+        <tfoot></tfoot>
+      </table>
     </div>
+  </div>
 
 </th:block>
 </html>
