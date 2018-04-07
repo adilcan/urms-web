@@ -53,7 +53,7 @@ public class RiskController {
 		}
 	}
 
-	@GetMapping("/{id}/show")
+	@GetMapping("/{id}")
 	public String showRisk(@PathVariable Long id, Model model) {
 		Optional<Risk> optionalRisk = riskRepository.findById(id);
 
@@ -91,7 +91,7 @@ public class RiskController {
 		}
 		else {
 			riskRepository.save(risk);
-			return "redirect:/risks";
+			return "redirect:/risks/" + risk.getId();
 		}
 	}
 

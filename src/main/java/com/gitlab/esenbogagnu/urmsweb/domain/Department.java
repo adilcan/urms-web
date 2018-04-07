@@ -20,7 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Department extends BaseEntity {
 
-	private String departmentName;
+	private String name;
+
+	private String email;
 
 	@OneToMany(mappedBy = "department")
 	private List<User> users;

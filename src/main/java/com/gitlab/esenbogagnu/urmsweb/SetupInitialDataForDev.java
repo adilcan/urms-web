@@ -31,31 +31,31 @@ public class SetupInitialDataForDev implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Department department0 = Department.builder()
-				.departmentName("Finance")
+				.name("Finance")
 				.build();
 
 		departmentRepository.save(department0);
 
 		Department department1 = Department.builder()
-				.departmentName("Human Resources")
+				.name("Human Resources")
 				.build();
 
 		departmentRepository.save(department1);
 
 		Department department2 = Department.builder()
-				.departmentName("External Affairs")
+				.name("External Affairs")
 				.build();
 
 		departmentRepository.save(department2);
 
 		Department department3 = Department.builder()
-				.departmentName("Information Technologies")
+				.name("Information Technologies")
 				.build();
 
 		departmentRepository.save(department3);
 
 		Department department4 = Department.builder()
-				.departmentName("Health")
+				.name("Health")
 				.build();
 
 		departmentRepository.save(department4);
