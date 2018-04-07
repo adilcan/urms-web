@@ -2,7 +2,6 @@ package com.gitlab.esenbogagnu.urmsweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,13 +28,8 @@ public class Risk extends BaseEntity {
 	@Lob
 	private String assessment;
 
-	@JsonIgnore
 	@Lob
 	private String notes;
-
-	@JsonIgnore
-	@Transient
-	private MultipartFile file;
 
 	@Enumerated(EnumType.STRING)
 	private RiskState state = RiskState.REPORTED;

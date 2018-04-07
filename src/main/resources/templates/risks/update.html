@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<th:block layout:fragment="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center" th:text="#{risk.update}">Update Risk Report</h2>
+                    <form id="risk-form" method="post" th:action="@{'/risks/' + ${risk.id} + '/update'}" th:object="${risk}">
 
-</body>
+                        <div class="form-group m-t-30">
+                            <label for="state" th:text="#{risk.state}">State</label>
+                            <select class="form-control" id="state" th:field="*{state}" required>
+                                <option th:each="state : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskState).values()}" th:text="${state}" th:value="${state}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="subject" th:text="#{risk.subject}">Risk Subject</label>
+                            <input class="form-control" th:value="*{subject}"  type="text" id="subject" th:field="*{subject}" required/>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="assessment" th:text="#{risk.assessment}">Assessment</label>
+                            <textarea class="form-control" th:value="*{assessment}" type="text" id="assessment" th:field="*{assessment}" required></textarea>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="likelihood" th:text="#{risk.likelihood}">Likelihood</label>
+                            <select class="form-control" id="likelihood" th:field="*{likelihood}" required>
+                                <option th:each="likelihood : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskLikelihood).values()}" th:text="${likelihood}" th:value="${likelihood}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="impact" th:text="#{risk.impact}">Impact</label>
+                            <select class="form-control" id="impact" th:field="*{impact}" required>
+                                <option th:each="impact : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskImpact).values()}" th:text="${impact}" th:value="${impact}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="category" th:text="#{risk.category}">Category</label>
+                            <select class="form-control" id="category" th:field="*{category}" required>
+                                <option th:each="category : ${T(com.gitlab.esenbogagnu.urmsweb.domain.RiskCategory).values()}" th:text="${category}" th:value="${category}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="departments" th:text="#{common.departments}">Departments</label>
+                            <select class="form-control" id="departments" th:field="*{departments}" multiple required>
+                                <option th:each="department : ${departments}" th:text="${department.name}" th:value="${department.id}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-t-30">
+                            <label for="notes" th:text="#{risk.notes}">Notes</label>
+                            <textarea class="form-control" th:value="*{notes}" type="text" id="notes" th:field="*{notes}" required></textarea>
+                        </div>
+
+                        <button th:text="#{common.update}" class="btn btn-primary" type="submit">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
 </html>

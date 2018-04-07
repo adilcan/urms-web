@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<th:block layout:fragment="content">
 
-</body>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-6"><h2 th:text="#{common.risks}">Risk Reports</h2></div>
+                <div class="col-2">
+                    <a class="btn btn-primary" th:text="#{risk.new}" th:href="@{/risks/new}">
+                    </a>
+                </div>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th th:text="#{risk.subject}">Risk Report Subject</th>
+                    <th th:text="#{risk.category}">Category</th>
+                    <th th:text="#{risk.impact}">Impact</th>
+                    <th th:text="#{risk.likelihood}">Likelihood</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="risk :${risks}">
+                    <td><a th:href="@{'/risks/' + ${risk.id}}" th:text="${risk.subject}"></a></td>
+                    <td th:text="${risk.category}"></td>
+                    <td th:text="${risk.impact}"></td>
+                    <td th:text="${risk.likelihood}"></td>
+                </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+
+</th:block>
 </html>
