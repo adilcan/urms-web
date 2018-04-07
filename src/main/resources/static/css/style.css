@@ -1679,7 +1679,9 @@ File: scss
 
 .page-wrapper {
   background: #eef5f9;
-  padding-bottom: 60px; }
+  padding-bottom: 60px;
+  min-height: 100%;
+}
 
 .container-fluid {
   padding: 0 30px 25px 30px; }
