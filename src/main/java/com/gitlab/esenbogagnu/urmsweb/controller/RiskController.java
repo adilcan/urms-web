@@ -3,6 +3,7 @@ package com.gitlab.esenbogagnu.urmsweb.controller;
 import com.gitlab.esenbogagnu.urmsweb.domain.Risk;
 import com.gitlab.esenbogagnu.urmsweb.repository.DepartmentRepository;
 import com.gitlab.esenbogagnu.urmsweb.repository.RiskRepository;
+import com.gitlab.esenbogagnu.urmsweb.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -29,6 +31,9 @@ public class RiskController {
 	@Autowired
 	private RiskRepository riskRepository;
 
+	@Autowired
+	private EmailService emailService;
+
 	@GetMapping("")
 	public String listRisks(Model model) {
 		model.addAttribute("risks", riskRepository.findAll());
@@ -43,12 +48,13 @@ public class RiskController {
 	}
 
 	@PostMapping("/new")
-	public String postNewRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult) {
+	public String postNewRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult) throws MessagingException {
 		if (bindingResult.hasErrors()) {
 			return "risks/new";
 		}
 		else {
 			riskRepository.save(risk);
+			emailService.sendRiskAsMail(risk);
 			return "redirect:/risks";
 		}
 	}
@@ -85,13 +91,14 @@ public class RiskController {
 	}
 
 	@PostMapping("/{id}/update")
-	public String postUpdateRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult, Model model) {
+	public String postUpdateRisk(@ModelAttribute @Valid Risk risk, BindingResult bindingResult, Model model) throws MessagingException {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("departments", departmentRepository.findAll());
 			return "risks/update";
 		}
 		else {
 			riskRepository.save(risk);
+			emailService.sendRiskAsMail(risk);
 			return "redirect:/risks/" + risk.getId();
 		}
 	}
