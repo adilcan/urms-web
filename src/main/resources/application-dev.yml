@@ -28,3 +28,5 @@ spring:
         console:
             enabled: true
             path: /h2-console
+site:
+    address: localhost:8080

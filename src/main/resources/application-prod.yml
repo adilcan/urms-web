@@ -22,3 +22,5 @@ spring:
                 smtp:
                     starttls:
                         enable: true
+site:
+    address: insertaddresshere
