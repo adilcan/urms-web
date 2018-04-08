@@ -5,7 +5,7 @@
           <form id="risk-form" method="post" th:action="@{'/risks/' + ${risk.id} + '/update'}" th:object="${risk}">
             <div class="card">
               <div class="card-body">
-                <h2 class="text-center" th:text="#{risk.update}">Update Risk Report</h2>
+                <h2 class="text-center" th:text="#{risk.update_keys}">Update Keys</h2>
                 <div class="form-group m-t-30">
                   <label for="state" th:text="#{risk.state}">State</label>
                   <select class="form-control" id="state" th:field="*{state}" required>
@@ -26,6 +26,7 @@
             </div>
             <div class="card">
               <div class="card-body">
+                <h2 class="text-center" th:text="#{risk.update}">Update Risk Report</h2>
                 <div class="form-group m-t-30">
                   <label for="subject" th:text="#{risk.subject}">Risk Subject</label>
                   <input class="form-control" th:value="*{subject}" type="text" id="subject" th:field="*{subject}" required/>
