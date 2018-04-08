@@ -11,6 +11,7 @@ spring:
         password: ${MAIL_PASSWORD}
         host: ${MAIL_HOST:smtp.gmail.com}
         defaultEncoding: UTF-8
+        site.address: localhost:8080
         properties:
             mail:
                 smtp:
