@@ -2,10 +2,17 @@ package com.gitlab.esenbogagnu.urmsweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -19,6 +26,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Risk extends BaseEntity {
 
 	@NotEmpty
@@ -52,5 +60,19 @@ public class Risk extends BaseEntity {
 	private RiskCategory category;
 
 	private boolean isResolved = false;
+
+	@CreatedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:SS")
+	private LocalDate creationDate;
+
+	@CreatedBy
+	private String createdBy;
+
+	@LastModifiedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:SS")
+	private LocalDate modifyDate;
+
+	@LastModifiedBy
+	private String modifiedBy;
 
 }
