@@ -3,6 +3,7 @@ package com.gitlab.esenbogagnu.urmsweb.service;
 import com.gitlab.esenbogagnu.urmsweb.domain.Department;
 import com.gitlab.esenbogagnu.urmsweb.domain.Risk;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -26,6 +27,9 @@ import java.util.List;
  */
 @Service
 public class EmailService {
+
+	@Value("${site.address}")
+	private String address;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -52,6 +56,7 @@ public class EmailService {
 
 		Context context = new Context();
 		context.setVariable("risk", risk);
+		context.setVariable("address", address);
 		String content = templateEngine().process("templates/mail/riskmail.html", context);
 		List<String> to = new ArrayList<>();
 		for (Department d : risk.getDepartments()) {
