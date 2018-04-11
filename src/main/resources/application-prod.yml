@@ -1,6 +1,9 @@
 server:
     port: 8080
 spring:
+    jpa:
+        hibernate:
+            ddl-auto: create
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
