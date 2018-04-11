@@ -2,6 +2,8 @@ package com.gitlab.esenbogagnu.urmsweb.controller;
 
 import com.gitlab.esenbogagnu.urmsweb.domain.User;
 import com.gitlab.esenbogagnu.urmsweb.repository.DepartmentRepository;
+import com.gitlab.esenbogagnu.urmsweb.repository.RiskRepository;
+import com.gitlab.esenbogagnu.urmsweb.service.ComputationService;
 import com.gitlab.esenbogagnu.urmsweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +31,16 @@ public class MainController {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 
+	@Autowired
+	private ComputationService computationService;
+
+	@Autowired
+	private RiskRepository riskRepository;
+
 	@GetMapping("")
-	public String getDashboard() {
+	public String getDashboard(Model model) {
+		model.addAttribute("riskComputation", computationService.getRiskComputation());
+		model.addAttribute("risks", riskRepository.findAll());
 		return "dashboard";
 	}
 

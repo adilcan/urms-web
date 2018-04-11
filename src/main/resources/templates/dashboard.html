@@ -3,9 +3,16 @@
 
   <div class="card">
     <div class="card-body">
-      <h2>A dashboard will be available here.</h2>
+      <ul th:each="r : ${riskComputation}">
+        <li th:text="${r}"></li>
+      </ul>
     </div>
   </div>
+
+  <script th:inline="javascript">
+    var risks = [[${risks}]];
+    console.log(risks);
+  </script>
 
 </th:block>
 </html>
