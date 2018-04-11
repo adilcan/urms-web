@@ -1,6 +1,7 @@
 package com.gitlab.esenbogagnu.urmsweb.service;
 
 import com.gitlab.esenbogagnu.urmsweb.domain.User;
+import com.gitlab.esenbogagnu.urmsweb.domain.UserDto;
 import com.gitlab.esenbogagnu.urmsweb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,5 +33,10 @@ public class UserService implements UserDetailsService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 
+	}
+
+	public void updatePassword(UserDto userDto, User user) {
+		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+		userRepository.save(user);
 	}
 }
