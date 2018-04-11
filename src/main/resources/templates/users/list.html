@@ -21,7 +21,7 @@
           <td th:text="${user.name}"></td>
           <td th:text="${user.email}"></td>
           <td th:text="${user.department.name}"></td>
-          <td><a class="btn btn-primary" th:href="@{'/users/' + ${user.id} + '/update'}" th:text="#{common.update}"></a></td>
+          <td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:href="@{'/users/' + ${user.id} + '/update'}" th:text="#{common.update}"></a></td>
         </tr>
         </tbody>
         <tfoot></tfoot>
