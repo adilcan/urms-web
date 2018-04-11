@@ -49,7 +49,7 @@
 
             <div class="form-group m-t-30">
               <label for="departments" th:text="#{common.departments}">Departments</label>
-              <select class="form-control" id="departments" th:field="*{departments}" multiple required>
+              <select class="form-control selectpicker" id="departments" th:field="*{departments}" multiple required>
                 <option th:each="department : ${departments}" th:text="${department.name}" th:value="${department.id}"></option>
               </select>
               <p th:if="${#fields.hasErrors('departments')}" th:errors="*{departments}"></p>
