@@ -23,4 +23,4 @@ spring:
                     starttls:
                         enable: true
 site:
-    address: insertaddresshere
+    address: 81.2.254.48
