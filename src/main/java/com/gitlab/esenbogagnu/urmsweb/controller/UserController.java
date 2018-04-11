@@ -8,6 +8,7 @@ import com.gitlab.esenbogagnu.urmsweb.service.UserService;
 import com.gitlab.esenbogagnu.urmsweb.validator.UserValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,6 +68,7 @@ public class UserController {
 		}
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/{id}/update")
 	public String getUpdateUser(@PathVariable Long id, Model model) {
 		Optional<User> optionalUser = userRepository.findById(id);
@@ -83,6 +85,7 @@ public class UserController {
 		}
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/{id}/update")
 	public String postUpdateUser(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
