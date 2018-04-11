@@ -96,8 +96,9 @@
 
     <div class="sidebar-footer">
       <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <a th:href="@{/users/update-password}" data-toggle="tooltip" title="Change Password"><i class="ti-settings"></i></a>
         <a href="javascript:void(0)" onclick="this.parentNode.submit()" class="link" data-toggle="tooltip" title="Logout"><i
-            class="mdi mdi-power"></i></a>
+                class="mdi mdi-power"></i></a>
       </form>
     </div>
   </aside>
