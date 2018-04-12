@@ -2,6 +2,7 @@ package com.gitlab.esenbogagnu.urmsweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -38,10 +39,12 @@ public class Risk extends BaseEntity {
 	private List<Department> departments;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@NotEmpty
 	private String assessment;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	private String notes;
 
 	@Enumerated(EnumType.STRING)

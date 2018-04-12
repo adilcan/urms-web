@@ -4,21 +4,15 @@ spring:
     jpa:
         hibernate:
             ddl-auto: create
-        properties:
-            hibernate:
-                jdbc:
-                    lob:
-                      non_contextual_creation: true
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
     datasource:
-        url: jdbc:postgresql://${DB_HOST:postgresql}:${DB_PORT:5432}/${DB_NAME:urms}
+        name: urms
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:urms}
         username: ${DB_USER}
         password: ${DB_PASSWORD}
-        testWhileIdle: True
-        validationQuery: SELECT 1
-        connectionProperties: useUnicode=true;characterEncoding=utf-8;
     mail:
         port: ${MAIL_PORT:587}
         username: ${MAIL_USER:urmsuite@gmail.com}
