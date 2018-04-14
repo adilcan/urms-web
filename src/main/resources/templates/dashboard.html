@@ -9,9 +9,79 @@
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-body">
+      <canvas id="riskByMonth" width="200" height="100"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <canvas id="doughnut"></canvas>
+    </div>
+  </div>
+
   <script th:inline="javascript">
-    var risks = [[${risks}]];
-    console.log(risks);
+    $(document).ready(function () {
+        var risks = [[${risks}]];
+        console.log(risks);
+        var riskDate = risks.map(d => d.creationDate);
+        var riskMonth = moment(riskDate, "YYYY-MM-DD").format('MMMM');
+        var riskCount = risks.map(d => d.creationDate = moment(d.creationDate, "YYYY-MM-DD").format('MMMM'));
+        var riskData = riskCount.filter(x => x === "April").length;
+        console.log(riskData);
+        var riskByMonthChart = $('#riskByMonth');
+        var chart1 = new Chart(riskByMonthChart , {
+            type: 'line',
+            data : {
+                labels: [riskMonth],
+                datasets: [{
+                    label: 'Risk Report Count',
+                    data: [riskData]
+                }]
+            },
+            options: {
+                title: {
+                  display: true,
+                  text:'Risk Reports By Month'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var resolved = risks.map(d => d.resolved).filter(d => d === true).length;
+        var unresolved = risks.map(d => d.resolved).filter(d => d === false).length;
+
+        var myDoughnutChart = new Chart(doughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ["Resolved", "Unresolved"],
+                datasets: [
+                    {
+                        data: [resolved, unresolved],
+                        backgroundColor: ["#3e95cd", "#c45850"]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Risk Reports By Resolvement'
+                }
+            }
+        });
+
+
+
+
+    });
+
   </script>
 
 </th:block>
