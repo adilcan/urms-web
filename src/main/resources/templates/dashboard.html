@@ -21,6 +21,12 @@
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-body">
+      <canvas id="polar"></canvas>
+    </div>
+  </div>
+
   <script th:inline="javascript">
     $(document).ready(function () {
         var risks = [[${risks}]];
@@ -77,9 +83,37 @@
             }
         });
 
+        var management = risks.map(d => d.category).filter(d => d === "MANAGEMENT").length;
+        var commercial = risks.map(d => d.category).filter(d => d === "COMMERCIAL").length;
+        var financial = risks.map(d => d.category).filter(d => d === "FINANCIAL").length;
+        var legal = risks.map(d => d.category).filter(d => d === "LEGAL").length;
+        var reputation = risks.map(d => d.category).filter(d => d === "REPUTATION").length;
+        var environment = risks.map(d => d.category).filter(d => d === "ENVIRONMENTAL").length;
+        var political = risks.map(d => d.category).filter(d => d === "POLITICAL").length;
+        var technical = risks.map(d => d.category).filter(d => d === "TECHNICAL").length;
+        var people = risks.map(d => d.category).filter(d => d === "PEOPLE").length;
+        var organizational = risks.map(d => d.category).filter(d => d === "ORGANIZATIONAL").length;
+        var operational = risks.map(d => d.category).filter(d => d === "OPERATIONAL").length;
 
 
-
+        var myPolarChart = new Chart(polar, {
+            type: 'polarArea',
+            data: {
+                labels: ["Management", "Commercial", "Financial", "Legal", "Reputation", "Environmental", "Political", "Technical", "People", "Organizational", "Operational"],
+                datasets: [
+                    {
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#02ffe9", "#ffa8a8", "#61a873", "#b2b768", "#87707a", "#70877e"],
+                        data:[management, commercial, financial, legal, reputation, environment, political, technical, people, organizational, operational]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Risk Reports By Category'
+                }
+            }
+        })
     });
 
   </script>
