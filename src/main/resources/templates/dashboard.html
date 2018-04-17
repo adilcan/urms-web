@@ -2,10 +2,203 @@
 <th:block layout:fragment="content">
 
   <div class="card">
+    <h2 class="text-center">Possible Significant Risks</h2>
     <div class="card-body">
-      <h2>A dashboard will be available here.</h2>
+      <ul th:each="r : ${riskComputation}">
+        <li th:text="${r}"></li>
+      </ul>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Month</h4>
+          <canvas id="riskByMonth" width="200" height="100"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Resolved</h4>
+          <canvas id="doughnut"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Category</h4>
+          <canvas id="polar"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Matrix</h4>
+          <span>Impact</span>
+          <canvas id="bubble"></canvas>
+          <span class="pull-right">Likelihood</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script th:inline="javascript">
+    $(document).ready(function () {
+        var risks = [[${risks}]];
+        console.log(risks);
+        var riskDate = risks.map(d => d.creationDate);
+        var riskMonth = moment.months();
+        var riskCount = risks.map(d => d.creationDate = moment(d.creationDate, "YYYY-MM-DD").format('MMMM'));
+        var riskData = riskCount.filter(x => x === "April").length;
+        console.log(riskData);
+        var riskByMonthChart = $('#riskByMonth');
+        var chart1 = new Chart(riskByMonthChart , {
+            type: 'line',
+            data : {
+                labels: riskMonth,
+                datasets: [{
+                    label: 'Risk Report Count',
+                    data: [1,5,9,12,4,5,2,3,5,6,4,3],
+                    pointRadius: 5,
+                    showLine: true,
+                    fill: false,
+                    lineTension: 0,
+                    borderColor: 'rgb(66, 217, 244)',
+                    pointBackgroundColor: 'rgb(8, 83, 96)'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+
+                        }
+                    }]
+                }
+            }
+        });
+
+        var resolved = risks.map(d => d.resolved).filter(d => d === true).length;
+        var unresolved = risks.map(d => d.resolved).filter(d => d === false).length;
+
+        var myDoughnutChart = new Chart(doughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ["Resolved", "Unresolved"],
+                datasets: [
+                    {
+                        data: [resolved, unresolved],
+                        backgroundColor: ["#3e95cd", "#cc0000"]
+                    }
+                ]
+            },
+            options: {
+
+            }
+        });
+
+        var management = risks.map(d => d.category).filter(d => d === "MANAGEMENT").length;
+        var commercial = risks.map(d => d.category).filter(d => d === "COMMERCIAL").length;
+        var financial = risks.map(d => d.category).filter(d => d === "FINANCIAL").length;
+        var legal = risks.map(d => d.category).filter(d => d === "LEGAL").length;
+        var reputation = risks.map(d => d.category).filter(d => d === "REPUTATION").length;
+        var environment = risks.map(d => d.category).filter(d => d === "ENVIRONMENTAL").length;
+        var political = risks.map(d => d.category).filter(d => d === "POLITICAL").length;
+        var technical = risks.map(d => d.category).filter(d => d === "TECHNICAL").length;
+        var people = risks.map(d => d.category).filter(d => d === "PEOPLE").length;
+        var organizational = risks.map(d => d.category).filter(d => d === "ORGANIZATIONAL").length;
+        var operational = risks.map(d => d.category).filter(d => d === "OPERATIONAL").length;
+
+
+        var myPolarChart = new Chart(polar, {
+            type: 'polarArea',
+            data: {
+                labels: ["Management", "Commercial", "Financial", "Legal", "Reputation", "Environmental", "Political", "Technical", "People", "Organizational", "Operational"],
+                datasets: [
+                    {
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#02ffe9", "#ffa8a8", "#61a873", "#b2b768", "#87707a", "#70877e"],
+                        data:[management, commercial, financial, legal, reputation, environment, political, technical, people, organizational, operational]
+                    }
+                ]
+            },
+            options: {
+                legend: {
+                  display: false
+                },
+                scale: {
+                  ticks: {
+                    stepSize: 1
+                  }
+                }
+            }
+        })
+    });
+
+    var popData = {
+      datasets: [{
+        label: ['Risk Reports'],
+        data: [{
+          x: 5,
+          y: 0,
+          r: 10
+        }, {
+         x: 2,
+         y: 3,
+         r: 20
+        }, {
+         x: 4,
+         y: 2,
+         r: 20
+        }, {
+          x: 3,
+          y: 3,
+          r: 30
+        }, {
+          x: 1,
+          y: 5,
+          r: 20
+        }, {
+          x: 0,
+          y: 1,
+          r: 20
+        }],
+        backgroundColor: "#4286f4"
+      }]
+    };
+
+    var bubbleChart = new Chart(bubble, {
+      type: 'bubble',
+      data: popData,
+      options: {
+
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize: 1,
+
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            stepSize: 1,
+
+                        }
+                    }]
+                }
+            }
+    });
+
+  </script>
 
 </th:block>
 </html>

@@ -28,7 +28,7 @@ public class ComputationService {
 
 		if (!risks.isEmpty()) {
 			for (Risk r : risks) {
-				String message = r.getSubject() + " may be occur again with " + getProbabilityByLikelihood(r.getLikelihood()) + " probability.";
+				String message = "''" + r.getSubject() + "'' may be occur again with " + getProbabilityByLikelihood(r.getLikelihood()) + " probability.";
 				computationMessages.add(message);
 			}
 		}
