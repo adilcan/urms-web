@@ -2,37 +2,60 @@
 <th:block layout:fragment="content">
 
   <div class="card">
+    <h2 class="text-center">Possible Significant Risks</h2>
     <div class="card-body">
       <ul th:each="r : ${riskComputation}">
         <li th:text="${r}"></li>
       </ul>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-body">
-      <canvas id="riskByMonth" width="200" height="100"></canvas>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Month</h4>
+          <canvas id="riskByMonth" width="200" height="100"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Resolved</h4>
+          <canvas id="doughnut"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <canvas id="doughnut"></canvas>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Reports By Category</h4>
+          <canvas id="polar"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Risk Matrix</h4>
+          <span>Impact</span>
+          <canvas id="bubble"></canvas>
+          <span class="pull-right">Likelihood</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <canvas id="polar"></canvas>
-    </div>
-  </div>
 
   <script th:inline="javascript">
     $(document).ready(function () {
         var risks = [[${risks}]];
         console.log(risks);
         var riskDate = risks.map(d => d.creationDate);
-        var riskMonth = moment(riskDate, "YYYY-MM-DD").format('MMMM');
+        var riskMonth = moment.months();
         var riskCount = risks.map(d => d.creationDate = moment(d.creationDate, "YYYY-MM-DD").format('MMMM'));
         var riskData = riskCount.filter(x => x === "April").length;
         console.log(riskData);
@@ -40,21 +63,25 @@
         var chart1 = new Chart(riskByMonthChart , {
             type: 'line',
             data : {
-                labels: [riskMonth],
+                labels: riskMonth,
                 datasets: [{
                     label: 'Risk Report Count',
-                    data: [riskData]
+                    data: [1,5,9,12,4,5,2,3,5,6,4,3],
+                    pointRadius: 5,
+                    showLine: true,
+                    fill: false,
+                    lineTension: 0,
+                    borderColor: 'rgb(66, 217, 244)',
+                    pointBackgroundColor: 'rgb(8, 83, 96)'
                 }]
             },
             options: {
-                title: {
-                  display: true,
-                  text:'Risk Reports By Month'
-                },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true,
+                            stepSize: 1,
+
                         }
                     }]
                 }
@@ -71,15 +98,12 @@
                 datasets: [
                     {
                         data: [resolved, unresolved],
-                        backgroundColor: ["#3e95cd", "#c45850"]
+                        backgroundColor: ["#3e95cd", "#cc0000"]
                     }
                 ]
             },
             options: {
-                title: {
-                    display: true,
-                    text: 'Risk Reports By Resolvement'
-                }
+
             }
         });
 
@@ -108,12 +132,70 @@
                 ]
             },
             options: {
-                title: {
-                    display: true,
-                    text: 'Risk Reports By Category'
+                legend: {
+                  display: false
+                },
+                scale: {
+                  ticks: {
+                    stepSize: 1
+                  }
                 }
             }
         })
+    });
+
+    var popData = {
+      datasets: [{
+        label: ['Risk Reports'],
+        data: [{
+          x: 5,
+          y: 0,
+          r: 10
+        }, {
+         x: 2,
+         y: 3,
+         r: 20
+        }, {
+         x: 4,
+         y: 2,
+         r: 20
+        }, {
+          x: 3,
+          y: 3,
+          r: 30
+        }, {
+          x: 1,
+          y: 5,
+          r: 20
+        }, {
+          x: 0,
+          y: 1,
+          r: 20
+        }],
+        backgroundColor: "#4286f4"
+      }]
+    };
+
+    var bubbleChart = new Chart(bubble, {
+      type: 'bubble',
+      data: popData,
+      options: {
+
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize: 1,
+
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            stepSize: 1,
+
+                        }
+                    }]
+                }
+            }
     });
 
   </script>
